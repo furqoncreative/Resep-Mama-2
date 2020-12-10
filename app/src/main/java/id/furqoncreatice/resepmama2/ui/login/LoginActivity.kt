@@ -2,11 +2,7 @@ package id.furqoncreatice.resepmama2.ui.login
 
 import android.app.Activity
 import android.content.Intent
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -15,8 +11,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import id.furqoncreatice.resepmama2.R
-import id.furqoncreatice.resepmama2.ui.MainActivity
+import id.furqoncreatice.resepmama2.ui.category.CategoryActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -25,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_login)
 
         val username = findViewById<EditText>(R.id.username)
@@ -59,7 +58,8 @@ class LoginActivity : AppCompatActivity() {
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, CategoryActivity::class.java))
+                finish()
             }
             setResult(Activity.RESULT_OK)
         })
@@ -95,6 +95,14 @@ class LoginActivity : AppCompatActivity() {
                 loginViewModel.login(username.text.toString(), password.text.toString())
             }
         }
+
+        login.apply {
+            setOnClickListener {
+                loading.visibility = View.VISIBLE
+                loginViewModel.login(username.text.toString(), password.text.toString())
+            }
+        }
+
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {

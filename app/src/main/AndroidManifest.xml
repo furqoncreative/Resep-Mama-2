@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.furqoncreatice.resepmama2">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,20 +13,21 @@
         <activity
             android:name=".ui.recipe.RecipeDetailActivity"
             android:label="@string/title_activity_recipe_detail"
-            android:theme="@style/Theme.ResepMama2.NoActionBar"></activity>
+            android:theme="@style/Theme.ResepMama2.NoActionBar" />
         <activity android:name=".ui.recipe.RecipeListActivity" />
         <activity android:name=".ui.category.CategoryActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login">
+            android:theme="@style/Theme.ResepMama2.NoActionBar">
+
+        </activity>
+        <activity android:name=".ui.intro.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.intro.SplashActivity" />
-        <activity android:name=".ui.MainActivity" />
     </application>
 
 </manifest>
